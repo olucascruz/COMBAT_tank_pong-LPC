@@ -13,3 +13,5 @@ player_1_starting_position_x = 100
 player_1_starting_position_y = 370
 player_2_starting_position_x = 1050
 player_2_starting_position_y = 370
+
+PLAYER_SPEED = 30
