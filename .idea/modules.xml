@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PONG-WAR.iml" filepath="$PROJECT_DIR$/.idea/PONG-WAR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/COMBAT_tank_pong-LPC.iml" filepath="$PROJECT_DIR$/.idea/COMBAT_tank_pong-LPC.iml" />
     </modules>
   </component>
 </project>

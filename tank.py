@@ -7,12 +7,12 @@ class Tank:
         self.name = name
 
         if self.name == 'player_1':
-            self.image = pygame.image.load("img/tank_pink.png")
+            self.image = pygame.image.load("img/tank_green.png")
             self.position_x = config.player_1_starting_position_x
             self.position_y = config.player_1_starting_position_y
 
         elif self.name == 'player_2':
-            self.image = pygame.image.load("img/tank_white.png")
+            self.image = pygame.image.load("img/tank_blue.png")
             self.position_x = config.player_2_starting_position_x
             self.position_y = config.player_2_starting_position_y
 

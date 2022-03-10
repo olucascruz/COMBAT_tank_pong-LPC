@@ -1,13 +1,15 @@
 
-SCREEN_WIDTH = 1000
-SCREEN_HEIGHT = 600
+SCREEN_WIDTH = 1200
+SCREEN_HEIGHT = 700
 SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
 PINK = '#d56dc3'
-GREEN = '#2c8c6e'
+GREEN = '#8cc55d'
 BLUE = '#3a8ab1'
+YELLOW = '#d4a642'
+RED = '#90260a'
 
 player_1_starting_position_x = 100
-player_1_starting_position_y = 350
-player_2_starting_position_x = 850
-player_2_starting_position_y = 350
+player_1_starting_position_y = 380
+player_2_starting_position_x = 1050
+player_2_starting_position_y = 380
