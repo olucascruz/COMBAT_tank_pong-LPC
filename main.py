@@ -2,6 +2,7 @@ import pygame
 import config
 from tank import Tank
 from wall import Wall
+from limit import limit_game
 
 pygame.init()
 
@@ -25,5 +26,7 @@ while True:
     tank_pink.render(game_screen)
     tank_white.render(game_screen)
     wall.render(game_screen)
+
+    limit_game(game_screen)
 
     pygame.display.update()

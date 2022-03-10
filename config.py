@@ -10,6 +10,6 @@ YELLOW = '#d4a642'
 RED = '#90260a'
 
 player_1_starting_position_x = 100
-player_1_starting_position_y = 380
+player_1_starting_position_y = 370
 player_2_starting_position_x = 1050
-player_2_starting_position_y = 380
+player_2_starting_position_y = 370
