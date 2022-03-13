@@ -10,7 +10,7 @@ YELLOW = '#d4a642'
 RED = '#90260a'
 
 # defines the max of bullets that can be on the screen at the same time
-max_bullets_per_time = 3
+max_bullets_per_time = 0
 
 player_1_starting_position_x = 100
 player_1_starting_position_y = 370

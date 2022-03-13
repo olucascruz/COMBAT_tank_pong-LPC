@@ -19,6 +19,22 @@ clock = pygame.time.Clock()
 
 key_pressed = set()
 
+# Defining the font 
+font_1 = pygame.font.Font("font/retro_gaming.ttf", 80)
+font_2 = pygame.font.Font("font/retro_gaming.ttf", 80)
+
+# Defining the initial Score
+score = 0
+score_text = font_1.render(f"{score}", True, "white")
+score_text_rect = score_text.get_rect()
+score_text_rect.midleft = (300, -40)
+
+# Defining the initial Score
+score_2 = 0
+score_text_2 = font_2.render(f"{score}", True, "white")
+score_text_rect_2 = score_text_2.get_rect()
+score_text_rect.midleft = (900, 40)
+
 # Creating the player group
 player_1 = pygame.sprite.GroupSingle(tank_green)
 player_2 = pygame.sprite.GroupSingle(tank_blue)
@@ -96,6 +112,46 @@ while True:
             elif event.key == pygame.K_DOWN:
                 key_pressed.remove('backward2')
 
+        # Check collision between bullet and tank green,
+        # and kills them both if they collide
+        def bullet_obstacle_collide():
+            for bullet in bullets.sprites():
+                collision = pygame.sprite.spritecollide(bullet, tank_green, True)
+
+            if collision:
+                bullet.kill()
+                tank_green.kill()
+                update_score_1()
+
+        # Update score
+        def update_score_1():
+            global score_text, score, score_text_rect
+
+            score += 1
+            score_text = font_1.render(f"{score}", True, "white")
+            score_text_rect = score_text.get_rect()
+            score_text_rect.midleft = (300, -40)
+
+        # Check collision between bullet and tank blue,
+        # and kills them both if they collide
+        def bullet_obstacle_collide():
+            for bullet in bullets.sprites():
+                collision = pygame.sprite.spritecollide(bullet, tank_blue, True)
+
+            if collision:
+                bullet.kill()
+                tank_blue.kill()
+                update_score_2()
+
+        # Update score
+        def update_score_2():
+            global score_text, score, score_text_rect
+
+            score += 1
+            score_text = font_2.render(f"{score}", True, "white")
+            score_text_rect = score_text.get_rect()
+            score_text_rect.midleft = (900, 40)
+
     move_player()
 
     # Drawing the elements on the screen
@@ -110,6 +166,12 @@ while True:
     tank_green.render(game_screen)
     tank_blue.render(game_screen)
     wall.render(game_screen)
+
+    # Score
+    game_screen.blit(score_text, score_text_rect)
+
+    # Score
+    game_screen.blit(score_text_2, score_text_rect_2)
 
     limit_game(game_screen)
 
