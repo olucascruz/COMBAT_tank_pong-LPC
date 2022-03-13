@@ -1,8 +1,9 @@
 import pygame
 
 
-class Wall:
+class Wall(pygame.sprite.Sprite):
     def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
         self.left_wall = pygame.image.load("img/defensive_wall.png")
         self.left_wall_x = 150
         self.left_wall_y = 280
@@ -27,6 +28,9 @@ class Wall:
         self.l_wall2 = pygame.image.load('img/L_wall2.png')
         self.l_wall2_x = 720
         self.l_wall2_y = 490
+
+        self.the_rect = self.left_wall.get_rect()
+        self.the_rect.center = [self.left_wall_x, self.left_wall_y]
 
     def render(self, surface):
         surface.blit(self.left_wall, (self.left_wall_x, self.left_wall_y))

@@ -2,8 +2,9 @@ import pygame
 import config
 
 
-class Tank:
+class Tank(pygame.sprite.Sprite):
     def __init__(self, name):
+        pygame.sprite.Sprite.__init__(self)
         self.name = name
         self.speed = config.PLAYER_SPEED
         self.direction = 0
@@ -18,8 +19,9 @@ class Tank:
             self.position_x = config.player_2_starting_position_x
             self.position_y = config.player_2_starting_position_y
 
+        self.the_rect = self.image.get_rect()
+
     def rotate(self, rotation_direction):
-        print(self.direction)
         if self.direction == 360 or self.direction == -360:
             self.direction = 0
         if rotation_direction == 'clockwise':
@@ -115,6 +117,8 @@ class Tank:
             if direction_move == 'backward':
                 self.position_x += self.speed
                 self.position_y -= self.speed/2
+
+        self.the_rect.center = [self.position_x, self.position_y]
 
     def render(self, surface):
         surface.blit(pygame.transform.rotate(self.image, self.direction),
