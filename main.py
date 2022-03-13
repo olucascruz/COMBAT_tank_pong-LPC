@@ -1,5 +1,6 @@
 import pygame
 import config
+import bullet
 from tank import Tank
 from wall import Wall
 from limit import limit_game
@@ -17,6 +18,21 @@ wall = Wall()
 clock = pygame.time.Clock()
 
 key_pressed = set()
+
+# Creating the player group
+player_1 = pygame.sprite.GroupSingle(tank_green)
+player_2 = pygame.sprite.GroupSingle(tank_blue)
+
+# Creating the bullets group
+bullets = pygame.sprite.Group()
+
+# Shoots a bullet, but there's a maximum
+# of "max_bullets_per_time" bullets on the screen
+def add_bullet_1():
+    global bullets
+
+    if len(bullets.sprites()) <= config.max_bullets_per_time:
+        bullets.add(bullet.Bullet(player_1.sprite.get_top_coordinates()))
 
 movements = dict(
     forward=lambda: tank_green.move('forward'),
@@ -68,9 +84,17 @@ while True:
             elif event.key == pygame.K_DOWN:
                 key_pressed.remove('backward2')
 
+        # Check if the player shoots a bullet
+        if event.key == pygame.K_f:
+            add_bullet()
+
     move_player()
 
+    # Drawing the elements on the screen
     game_screen.fill(config.RED)
+
+    bullets.draw(game_screen)
+    bullets.update()
 
     tank_green.render(game_screen)
     tank_blue.render(game_screen)
