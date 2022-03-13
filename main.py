@@ -90,8 +90,9 @@ while True:
 
             if event.key == pygame.K_f:
                 add_bullet_1()
+                collision_sound.play()
             if event.key == pygame.K_RSHIFT:
-                add_bullet_2()
+                add_bullet_2.play()
 
             if event.key == pygame.K_LEFT:
                 tank_blue.rotate('clockwise')
@@ -122,6 +123,7 @@ while True:
                 bullet.kill()
                 tank_green.kill()
                 update_score_1()
+                shot_sound.play()
 
         # Update score
         def update_score_1():
@@ -142,6 +144,7 @@ while True:
                 bullet.kill()
                 tank_blue.kill()
                 update_score_2()
+                shot_sound.play()
 
         # Update score
         def update_score_2():

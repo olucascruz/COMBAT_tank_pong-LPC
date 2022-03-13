@@ -9,6 +9,10 @@ BLUE = '#3a8ab1'
 YELLOW = '#d4a642'
 RED = '#90260a'
 
+shot_sound = pygame.mixer.Sound('sound/shot.wav')
+collision_sound = pygame.mixer.Sound('sound/beep1.wav')
+score_sound = pygame.mixer.Sound('sound/scoring.wav')
+
 # defines the max of bullets that can be on the screen at the same time
 max_bullets_per_time = 0
 
