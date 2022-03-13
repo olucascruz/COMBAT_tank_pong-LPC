@@ -24,15 +24,22 @@ player_1 = pygame.sprite.GroupSingle(tank_green)
 player_2 = pygame.sprite.GroupSingle(tank_blue)
 
 # Creating the bullets group
-bullets = pygame.sprite.Group()
+bullets_1 = pygame.sprite.Group()
+bullets_2 = pygame.sprite.Group()
 
 # Shoots a bullet, but there's a maximum
 # of "max_bullets_per_time" bullets on the screen
 def add_bullet_1():
     global bullets
 
-    if len(bullets.sprites()) <= config.max_bullets_per_time:
-        bullets.add(bullet.Bullet(player_1.sprite.get_top_coordinates()))
+    if len(bullets_1.sprites()) <= config.max_bullets_per_time:
+        bullets_1.add(bullet.Bullet(player_1.sprite.get_bullet_coordinates(),1))
+
+def add_bullet_2():
+    global bullets
+
+    if len(bullets_2.sprites()) <= config.max_bullets_per_time:
+        bullets_2.add(bullet.Bullet(player_2.sprite.get_bullet_coordinates(),2))
 
 movements = dict(
     forward=lambda: tank_green.move('forward'),
@@ -65,6 +72,11 @@ while True:
             elif event.key == pygame.K_s:
                 key_pressed.add('backward')
 
+            if event.key == pygame.K_f:
+                add_bullet_1()
+            if event.key == pygame.K_RSHIFT:
+                add_bullet_2()
+
             if event.key == pygame.K_LEFT:
                 tank_blue.rotate('clockwise')
             elif event.key == pygame.K_RIGHT:
@@ -84,17 +96,16 @@ while True:
             elif event.key == pygame.K_DOWN:
                 key_pressed.remove('backward2')
 
-        # Check if the player shoots a bullet
-        if event.key == pygame.K_f:
-            add_bullet()
-
     move_player()
 
     # Drawing the elements on the screen
     game_screen.fill(config.RED)
 
-    bullets.draw(game_screen)
-    bullets.update()
+    bullets_1.draw(game_screen)
+    bullets_1.update()
+
+    bullets_2.draw(game_screen)
+    bullets_2.update()
 
     tank_green.render(game_screen)
     tank_blue.render(game_screen)

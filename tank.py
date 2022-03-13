@@ -19,7 +19,7 @@ class Tank(pygame.sprite.Sprite):
             self.position_x = config.player_2_starting_position_x
             self.position_y = config.player_2_starting_position_y
 
-        self.the_rect = self.image.get_rect()
+        self.the_rect = self.image.get_rect(center = (self.position_x,self.position_y))
 
     def rotate(self, rotation_direction):
         if self.direction == 360 or self.direction == -360:
@@ -123,3 +123,6 @@ class Tank(pygame.sprite.Sprite):
     def render(self, surface):
         surface.blit(pygame.transform.rotate(self.image, self.direction),
                      (self.position_x, self.position_y))
+
+    def get_bullet_coordinates(self):
+        return [self.the_rect.bottomright,self.direction]
