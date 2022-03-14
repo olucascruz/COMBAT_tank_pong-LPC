@@ -33,17 +33,17 @@ def game():
     Mens_pontos2format = font.render(str(score_2), False, config.BLUE)
     key_pressed = set()
 
-    def update_score(player):
-        global  Mens_pontos2format, score_2
+    def update_score(player, tank):
+        global Mens_pontos2format, score_2
         if player == 1:
-            score_2 += 1
-
+            score_2 = score_2 + 1
+            tank.hit = False
             Mens_pontos2format = font.render(str(score_2), False, config.BLUE)
             
         if player == 2:
             global Mens_pontos1format, score_1
-            score_1 += 1
-
+            score_1 = score_1 + 1
+            tank.hit = False
             Mens_pontos1format = font.render(str(score_1), False, config.GREEN)
 
     # Creating the player group
@@ -123,7 +123,6 @@ def game():
                     key_pressed.remove('backward2')
 
             if event.type == pygame.USEREVENT + 1:
-                print('evento')
                 if len(bullets_1.sprites()) >= config.max_bullets_per_time:
                     for i in bullets_1:
                         i.kill()
@@ -131,27 +130,22 @@ def game():
                 if len(bullets_1.sprites()) >= config.max_bullets_per_time:
                     for i in bullets_2:
                         i.kill()
-            if event.type == pygame.USEREVENT + 3:
-                tank_green.hit = False
-            if event.type == pygame.USEREVENT + 4:
-                tank_blue.hit = False
-            
+
             # Check if the user wants to exit
             if event.type == pygame.QUIT:
                 pygame.quit()
-                exit()
 
         if tank_green.hit:
-            update_score(1)
-            tank_green.hit = False
+            update_score(1, tank_green)
+            for i in bullets_2:
+                i.kill()
 
         if tank_blue.hit:
-            update_score(2)
-            tank_green.hit = False
+            update_score(2, tank_blue)
+            for i in bullets_1:
+                i.kill()
 
-        pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
-
-        print(tank_green.hit)
+        #pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
 
         move_player()
 

@@ -1,5 +1,4 @@
 import pygame
-import config
 import random
 from collision import collide_bullet
 
@@ -86,15 +85,15 @@ class Bullet(pygame.sprite.Sprite):
             self.dy = -1 * (self.speed/2)
         
         if self.player == 1:
-            print("2")
             self.dx *= -1
             self.dy *= -1
 
     def collide_with_tank(self):
         if self.rect.colliderect(self.enemy.the_rect):
-            locals_list = [50, 180, 1100, 180, 50, 650, 1100, 650]
-            self.enemy.position_x = locals_list[random.randint(0, 7)]
-            self.enemy.position_y = locals_list[random.randint(0, 7)]
+            locals_y = [50, 180, 300, 180, 50, 650, 500, 650]
+            locals_x = [50, 180, 1100, 650, 900, 1000, 380]
+            self.enemy.position_x = locals_x[random.randint(0, 6)]
+            self.enemy.position_y = locals_y[random.randint(0, 6)]
             self.enemy.hit = True
 
     def update(self):

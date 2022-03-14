@@ -129,4 +129,4 @@ class Tank(pygame.sprite.Sprite):
                      (self.position_x, self.position_y))
 
     def get_bullet_coordinates(self):
-        return [self.the_rect.bottomright,self.direction]
+        return [self.the_rect.bottomright, self.direction]

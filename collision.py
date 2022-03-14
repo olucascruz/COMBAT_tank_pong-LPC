@@ -67,7 +67,7 @@ def players_collide(player1, player2):
         player1.position_x = player2.position_x - player1.width
 
     if player2.position_x + player2.width >= player1.position_x >= player2.position_x + (player2.width - 10) and \
-            player1.position_y - 20 < player1.position_y + (player1.height / 2) < player1.position_y + player2.height:
+            player1.position_y - 20 < player1.position_y + (player1.height / 2) < player2.position_y + player2.height:
         player1.position_x = player2.position_x + player2.width
 
     if player2.position_y + player2.height >= player1.position_y >= player2.position_y + (player2.position_y - 10) and \
