@@ -1,6 +1,7 @@
 # ATIVIDADE 006: Tank Pong em PYGAME
 
-- Objetivo do repositório 
+
+- Objetivo
 
 Projeto criado para desenvolvimento do jogo COMBAT: TANK PONG para aula de Laboratório de Programação.
 
@@ -18,6 +19,7 @@ O projeto foi concluído.
 
 ## Colaboradores 👩‍💻 🧑‍💻👩‍💻 
 
-Luana Martins Dutra 2115310055
-Lucas Cruz Araújo - 2115310019
-Sarah Portela Salehi - 2115310044
+ - Luana Martins Dutra 2115310055
+ - Lucas Cruz Araújo - 2115310019
+ - Sarah Portela Salehi - 2115310044
+
