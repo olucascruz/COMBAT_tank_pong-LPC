@@ -19,7 +19,7 @@ O projeto foi concluído.
 
 ## Colaboradores 👩‍💻 🧑‍💻👩‍💻 
 
- - Luana Martins Dutra 2115310055
+ - Luana Martins Dutra - 2115310055
  - Lucas Cruz Araújo - 2115310019
  - Sarah Portela Salehi - 2115310044
 
