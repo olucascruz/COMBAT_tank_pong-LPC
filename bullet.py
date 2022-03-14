@@ -1,8 +1,8 @@
 import pygame
-
+from collision import collide_bullet
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, coord, player):
+    def __init__(self, coord, player, enemy):
         super().__init__()
         self.image = pygame.Surface((5, 5))
         self.image.fill("red")
@@ -25,11 +25,15 @@ class Bullet(pygame.sprite.Sprite):
         self.dy = 0
 
         self.set_direction()
+        self.position_x = self.rect.x
+        self.position_y = self.rect.y
+        self.width = 5
+        self.height = 5
+        self.enemy = enemy
 
     def movement(self):
         self.rect.x += self.dx
         self.rect.y += self.dy
-
         if self.rect.bottom < 0 or self.rect.top > 700 or self.rect.left > 1200 or self.rect.right < 0:
             self.kill()
 
@@ -83,5 +87,11 @@ class Bullet(pygame.sprite.Sprite):
             self.dx *= -1
             self.dy *= -1
 
+    def collide_with_tank(self):
+        if self.rect.colliderect(self.enemy.the_rect):
+            print("batata")
+
     def update(self):
         self.movement()
+        self.collide_with_tank()
+        collide_bullet(self)

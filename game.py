@@ -4,7 +4,7 @@ import bullet
 from tank import Tank
 from wall import Wall
 from limit import limit_game
-from collision import collide
+from collision import collide, players_collide
 
 
 def game():
@@ -58,12 +58,12 @@ def game():
     def add_bullet_1():
 
         if len(bullets_1.sprites()) <= config.max_bullets_per_time:
-            bullets_1.add(bullet.Bullet(player_1.sprite.get_bullet_coordinates(), 1))
+            bullets_1.add(bullet.Bullet(player_1.sprite.get_bullet_coordinates(), 1, tank_blue))
 
     def add_bullet_2():
 
         if len(bullets_2.sprites()) <= config.max_bullets_per_time:
-            bullets_2.add(bullet.Bullet(player_2.sprite.get_bullet_coordinates(), 2))
+            bullets_2.add(bullet.Bullet(player_2.sprite.get_bullet_coordinates(), 2, tank_green))
 
     movements = dict(
         forward=lambda: tank_green.move('forward'),
@@ -120,17 +120,19 @@ def game():
                     key_pressed.remove('backward2')
 
             def bullet_tank_collision():
-                collision = pygame.sprite.spritecollide(player_1.sprite, bullets_2, True, pygame.sprite.collide_mask)
+                collision = pygame.sprite.spritecollide(player_1.sprite, bullets_2, True)
 
                 if collision:
                     player_1.sprite.death()
                     update_score(1)
+                    print('batata')
 
-                collision = pygame.sprite.spritecollide(player_2.sprite, bullets_1, True, pygame.sprite.collide_mask)
+                collision = pygame.sprite.spritecollideany(player_2.sprite, bullets_1, True)
 
                 if collision:
                     player_2.sprite.death()
                     update_score(2)
+                    print('salmão')
 
         move_player()
 
@@ -149,6 +151,8 @@ def game():
 
         collide(tank_green)
         collide(tank_blue)
+        players_collide(tank_green, tank_blue)
+        players_collide(tank_blue, tank_green)
 
         # Shows Score
         game_screen.blit(Mens_pontos1format, (250, -10))
