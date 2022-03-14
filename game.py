@@ -19,31 +19,26 @@ def game():
     wall = Wall()
     clock = pygame.time.Clock()
 
-    key_pressed = set()
-
     # Players Scores
     score_1 = 0
     score_2 = 0
     font = pygame.font.Font("font/retro_gaming.ttf", 80)
-    Mens_pontos1 = f'{score_1}'
-    Mens_pontos1format = font.render(Mens_pontos1, False, config.GREEN)
-    Mens_pontos2 = f'{score_2}'
-    Mens_pontos2format = font.render(Mens_pontos2, False, config.BLUE)
+    Mens_pontos1format = font.render(str(score_1), False, config.GREEN)
+    Mens_pontos2format = font.render(str(score_2), False, config.BLUE)
+    key_pressed = set()
 
-    def update_score(player):
-        global score_1, Mens_pontos1, Mens_pontos1format
+    def update_score(player, score1, score2):
+        global  Mens_pontos1format
         if player == 1:
-            score_1 += 1
+            score1 += 1
 
-            Mens_pontos1 = f'{score_1}'
-            Mens_pontos1format = font.render(Mens_pontos1, False, config.GREEN)
+            Mens_pontos1format = font.render(str(score1), False, config.GREEN)
 
         if player == 2:
-            global score_2, Mens_pontos2, Mens_pontos2format
-            score_2 += 1
+            global Mens_pontos2format
+            score2 += 1
 
-            Mens_pontos2 = f'{score_2}'
-            Mens_pontos2format = font.render(Mens_pontos2, False, config.BLUE)
+            Mens_pontos2format = font.render(str(score2), False, config.BLUE)
 
     # Creating the player group
     player_1 = pygame.sprite.GroupSingle(tank_green)
@@ -96,9 +91,11 @@ def game():
 
                 if event.key == pygame.K_f:
                     add_bullet_1()
+                    pygame.time.set_timer(pygame.USEREVENT + 1, 4000)
                     # collision_sound.play()
                 if event.key == pygame.K_RSHIFT:
                     add_bullet_2()
+                    pygame.time.set_timer(pygame.USEREVENT + 2, 4000)
 
                 if event.key == pygame.K_LEFT:
                     tank_blue.rotate('clockwise')
@@ -119,20 +116,31 @@ def game():
                 elif event.key == pygame.K_DOWN:
                     key_pressed.remove('backward2')
 
-            def bullet_tank_collision():
-                collision = pygame.sprite.spritecollide(player_1.sprite, bullets_2, True)
+            if event.type == pygame.USEREVENT + 1:
+                print('evento')
+                if len(bullets_1.sprites()) >= config.max_bullets_per_time:
+                    for i in bullets_1:
+                        i.kill()
+            if event.type == pygame.USEREVENT + 2:
+                if len(bullets_1.sprites()) >= config.max_bullets_per_time:
+                    for i in bullets_2:
+                        i.kill()
+            if event.type == pygame.USEREVENT + 3:
+                tank_green.hit = False
+            if event.type == pygame.USEREVENT + 4:
+                tank_blue.hit = False
 
-                if collision:
-                    player_1.sprite.death()
-                    update_score(1)
-                    print('batata')
+        if tank_green.hit:
+            update_score(1, score_1, score_2)
 
-                collision = pygame.sprite.spritecollideany(player_2.sprite, bullets_1, True)
+            pygame.time.set_timer(pygame.USEREVENT + 3, 1000)
+        if tank_blue.hit:
+            update_score(2, score_1, score_2)
 
-                if collision:
-                    player_2.sprite.death()
-                    update_score(2)
-                    print('salmão')
+            pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
+
+
+        print(tank_green.hit)
 
         move_player()
 

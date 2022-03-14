@@ -11,6 +11,7 @@ class Tank(pygame.sprite.Sprite):
         self.angle = 30
         self.height = 49
         self.width = 52
+        self.hit = False
 
         if self.name == 'player_1':
             self.image = pygame.image.load("img/tank_green.png").convert_alpha()

@@ -82,15 +82,19 @@ def players_collide(player1, player2):
 def collide_bullet(bullet):
     # collision left
     if bullet.rect.x <= 25:
+        bullet.rect.x = 25
         bullet.dx *= -1
     # collision up
     if bullet.rect.y <= 105:
+        bullet.rect.y = 105
         bullet.dy *= -1
     # collision down
     if bullet.rect.y >= config.SCREEN_HEIGHT - 25:
+        bullet.rect.y = config.SCREEN_HEIGHT - 25
         bullet.dy *= -1
     # collision right
-    if bullet.rect.x + 80 >= config.SCREEN_WIDTH:
+    if bullet.rect.x >= config.SCREEN_WIDTH-25:
+        bullet.rect.x = config.SCREEN_WIDTH-25
         bullet.dx *= -1
     # collision left wall
 
