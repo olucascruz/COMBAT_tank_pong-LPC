@@ -2,12 +2,12 @@ import pygame
 
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, coord,player):
+    def __init__(self, coord, player):
         super().__init__()
         self.image = pygame.Surface((5, 5))
         self.image.fill("red")
 
-        directions = [30,60,210,240,-120,-150,-300,-330]
+        directions = [30, 60, 210, 240, -120, -150, -300, -330]
 
         self.direction = coord[1]
 
@@ -15,10 +15,10 @@ class Bullet(pygame.sprite.Sprite):
 
         for direction in directions:
             if direction == self.direction:
-                coord[0] = (coord[0][0] + 8,coord[0][1] + 8)
+                coord[0] = (coord[0][0] + 8, coord[0][1] + 8)
                 break
 
-        self.rect = self.image.get_rect(center = coord[0])
+        self.rect = self.image.get_rect(center=coord[0])
         self.speed = 15
 
         self.dx = 0
@@ -32,7 +32,6 @@ class Bullet(pygame.sprite.Sprite):
 
         if self.rect.bottom < 0 or self.rect.top > 700 or self.rect.left > 1200 or self.rect.right < 0:
             self.kill()
-
 
     def set_direction(self):
         if self.direction == 0 or self.direction == 360 or self.direction == -360:

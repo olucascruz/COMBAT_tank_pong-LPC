@@ -8,26 +8,29 @@ class Tank(pygame.sprite.Sprite):
         self.name = name
         self.speed = config.PLAYER_SPEED
         self.direction = 0
+        self.angle = 30
+        self.height = 49
+        self.width = 52
 
         if self.name == 'player_1':
-            self.image = pygame.image.load("img/tank_green.png")
+            self.image = pygame.image.load("img/tank_green.png").convert_alpha()
             self.position_x = config.player_1_starting_position_x
             self.position_y = config.player_1_starting_position_y
 
         elif self.name == 'player_2':
-            self.image = pygame.image.load("img/tank_blue.png")
+            self.image = pygame.image.load("img/tank_blue.png").convert_alpha()
             self.position_x = config.player_2_starting_position_x
             self.position_y = config.player_2_starting_position_y
 
-        self.the_rect = self.image.get_rect(center = (self.position_x,self.position_y))
+        self.the_rect = self.image.get_rect(center=(self.position_x, self.position_y))
 
     def rotate(self, rotation_direction):
         if self.direction == 360 or self.direction == -360:
             self.direction = 0
         if rotation_direction == 'clockwise':
-            self.direction += self.speed
+            self.direction += self.angle
         elif rotation_direction == 'counter-clockwise':
-            self.direction -= self.speed
+            self.direction -= self.angle
 
     def move(self, direction_move):
         # move right

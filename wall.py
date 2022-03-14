@@ -7,30 +7,33 @@ class Wall(pygame.sprite.Sprite):
         self.left_wall = pygame.image.load("img/defensive_wall.png")
         self.left_wall_x = 150
         self.left_wall_y = 280
+        self.left_wall_rect = self.left_wall.get_rect()
 
         self.right_wall = pygame.image.load("img/defensive_wall.png")
         self.right_wall_rotate = pygame.transform.rotate(self.right_wall, 180)
         self.right_wall_x = 1000
         self.right_wall_y = 280
+        self.right_wall_rect = self.right_wall.get_rect()
 
         self.horizontal_wall = pygame.image.load("img/horizontal_wall.png")
         self.horizontal_wall_x = 170
         self.horizontal_wall_y = 170
+        self.horizontal_wall_rect = self.horizontal_wall.get_rect()
 
         self.square_wall = pygame.image.load('img/square_wall.png')
         self.square_wall_x = 280
         self.square_wall_y = 360
+        self.square_wall_rect = self.square_wall.get_rect()
 
         self.l_wall = pygame.image.load('img/L_wall.png')
         self.l_wall_x = 400
         self.l_wall_y = 490
+        self.l_wall_rect = self.l_wall.get_rect()
 
         self.l_wall2 = pygame.image.load('img/L_wall2.png')
         self.l_wall2_x = 720
         self.l_wall2_y = 490
-
-        self.the_rect = self.left_wall.get_rect()
-        self.the_rect.center = [self.left_wall_x, self.left_wall_y]
+        self.l_wall2_rect = self.l_wall2.get_rect()
 
     def render(self, surface):
         surface.blit(self.left_wall, (self.left_wall_x, self.left_wall_y))
