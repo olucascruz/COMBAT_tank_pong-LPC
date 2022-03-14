@@ -1,6 +1,9 @@
 import pygame
 pygame.mixer.init()
 
+pygame.mixer.music.load('sound/fundo.mp3')
+pygame.mixer.music.play(-1)
+
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 700
 SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
@@ -13,7 +16,6 @@ RED = '#90260a'
 
 shot_sound = pygame.mixer.Sound('sound/shot.wav')
 collision_sound = pygame.mixer.Sound('sound/beep1.wav')
-score_sound = pygame.mixer.Sound('sound/scoring.wav')
 
 # defines the max of bullets that can be on the screen at the same time
 max_bullets_per_time = 0

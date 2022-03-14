@@ -98,11 +98,9 @@ def game():
                 if event.key == pygame.K_f:
                     add_bullet_1()
                     pygame.time.set_timer(pygame.USEREVENT + 1, 4000)
-                    # collision_sound.play()
                 if event.key == pygame.K_RSHIFT:
                     add_bullet_2()
                     pygame.time.set_timer(pygame.USEREVENT + 2, 4000)
-
                 if event.key == pygame.K_LEFT:
                     tank_blue.rotate('clockwise')
                 elif event.key == pygame.K_RIGHT:
@@ -126,6 +124,7 @@ def game():
                 if len(bullets_1.sprites()) >= config.max_bullets_per_time:
                     for i in bullets_1:
                         i.kill()
+                    
             if event.type == pygame.USEREVENT + 2:
                 if len(bullets_1.sprites()) >= config.max_bullets_per_time:
                     for i in bullets_2:
@@ -139,11 +138,13 @@ def game():
             update_score(1, tank_green)
             for i in bullets_2:
                 i.kill()
+                config.shot_sound.play()
 
         if tank_blue.hit:
             update_score(2, tank_blue)
             for i in bullets_1:
                 i.kill()
+                config.shot_sound.play()
 
         #pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
 

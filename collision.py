@@ -1,4 +1,4 @@
-import config
+import config 
 from wall import Wall
 
 wall = Wall()
@@ -125,18 +125,22 @@ def collide_bullet(bullet):
                 list_y[i] - 20 < bullet.rect.y + (bullet.height / 2) < list_y[i] + list_rect_h[i]:
             bullet.dx *= -1
             bullet.dy += -0.75
+            config.collision_sound.play()
 
         if list_x[i] + list_rect_w[i] >= bullet.rect.x >= list_x[i] + (list_rect_w[i] - 10) and \
                 list_y[i] - 20 < bullet.rect.y + (bullet.height / 2) < list_y[i] + list_rect_h[i]:
             bullet.dx *= -1
             bullet.dy += -0.75
+            config.collision_sound.play()
 
         if list_y[i] + list_rect_h[i] >= bullet.rect.y >= list_y[i] + (list_rect_h[i] - 10) and \
                 list_x[i] < bullet.rect.x + (bullet.width / 2) < list_x[i] + list_rect_w[i]:
             bullet.dy *= -1
             bullet.dx += -0.75
+            config.collision_sound.play()
 
         if list_y[i] <= bullet.rect.y + bullet.height <= list_y[i] + 10 and \
                 list_x[i] < bullet.rect.x + (bullet.width / 2) < list_x[i] + list_rect_w[i]:
             bullet.dy *= -1
             bullet.dx += -0.75
+            config.collision_sound.play()
