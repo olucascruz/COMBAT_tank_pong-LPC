@@ -19,21 +19,31 @@ clock = pygame.time.Clock()
 
 key_pressed = set()
 
-# Defining the font 
-font_1 = pygame.font.Font("font/retro_gaming.ttf", 80)
-font_2 = pygame.font.Font("font/retro_gaming.ttf", 80)
-
-# Defining the initial Score
-score = 0
-score_text = font_1.render(f"{score}", True, "white")
-score_text_rect = score_text.get_rect()
-score_text_rect.midleft = (300, -40)
-
-# Defining the initial Score
+# Players Scores
+score_1 = 0
 score_2 = 0
-score_text_2 = font_2.render(f"{score}", True, "white")
-score_text_rect_2 = score_text_2.get_rect()
-score_text_rect.midleft = (900, 40)
+font = pygame.font.Font("font/retro_gaming.ttf", 80)
+font2 = pygame.font.Font("font/retro_gaming.ttf", 80)
+Mens_pontos1 = f'{score_1}'
+Mens_pontos1format = font.render(Mens_pontos1, False, config.GREEN)
+Mens_pontos2 = f'{score_2}'
+Mens_pontos2format = font.render(Mens_pontos2, False, config.BLUE)
+
+def update_score(player):
+
+    if player == 1:
+        global score_1, Mens_pontos1, Mens_pontos1format
+        score_1 += 1
+
+        Mens_pontos1 = f'{score_1}'
+        Mens_pontos1format = font.render(Mens_pontos1, False, config.GREEN)
+
+    if player == 2:
+        global score_2, Mens_pontos2, Mens_pontos2format
+        score_2 += 1
+
+        Mens_pontos2 = f'{score_2}'
+        Mens_pontos2format = font.render(Mens_pontos2, False, config.BLUE)
 
 # Creating the player group
 player_1 = pygame.sprite.GroupSingle(tank_green)
@@ -90,9 +100,9 @@ while True:
 
             if event.key == pygame.K_f:
                 add_bullet_1()
-                collision_sound.play()
+                # collision_sound.play()
             if event.key == pygame.K_RSHIFT:
-                add_bullet_2.play()
+                add_bullet_2()
 
             if event.key == pygame.K_LEFT:
                 tank_blue.rotate('clockwise')
@@ -113,47 +123,18 @@ while True:
             elif event.key == pygame.K_DOWN:
                 key_pressed.remove('backward2')
 
-        # Check collision between bullet and tank green,
-        # and kills them both if they collide
-        def bullet_obstacle_collide():
-            for bullet in bullets.sprites():
-                collision = pygame.sprite.spritecollide(bullet, tank_green, True)
+        def bullet_tank_collision():
+            collision = pygame.sprite.spritecollide(player_1.sprite,bullets_2,True,pygame.sprite.collide_mask)
 
             if collision:
-                bullet.kill()
-                tank_green.kill()
-                update_score_1()
-                shot_sound.play()
+                player_1.sprite.death()
+                update_score(1)
 
-        # Update score
-        def update_score_1():
-            global score_text, score, score_text_rect
-
-            score += 1
-            score_text = font_1.render(f"{score}", True, "white")
-            score_text_rect = score_text.get_rect()
-            score_text_rect.midleft = (300, -40)
-
-        # Check collision between bullet and tank blue,
-        # and kills them both if they collide
-        def bullet_obstacle_collide():
-            for bullet in bullets.sprites():
-                collision = pygame.sprite.spritecollide(bullet, tank_blue, True)
+            collision = pygame.sprite.spritecollide(player_2.sprite,bullets_1,True,pygame.sprite.collide_mask)
 
             if collision:
-                bullet.kill()
-                tank_blue.kill()
-                update_score_2()
-                shot_sound.play()
-
-        # Update score
-        def update_score_2():
-            global score_text, score, score_text_rect
-
-            score += 1
-            score_text = font_2.render(f"{score}", True, "white")
-            score_text_rect = score_text.get_rect()
-            score_text_rect.midleft = (900, 40)
+                player_2.sprite.death()
+                update_score(2)
 
     move_player()
 
@@ -170,11 +151,9 @@ while True:
     tank_blue.render(game_screen)
     wall.render(game_screen)
 
-    # Score
-    game_screen.blit(score_text, score_text_rect)
-
-    # Score
-    game_screen.blit(score_text_2, score_text_rect_2)
+    # Shows Score
+    game_screen.blit(Mens_pontos1format,(250,-10))
+    game_screen.blit(Mens_pontos2format,(900,-10))
 
     limit_game(game_screen)
 

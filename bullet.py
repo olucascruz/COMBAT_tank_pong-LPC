@@ -19,7 +19,7 @@ class Bullet(pygame.sprite.Sprite):
                 break
 
         self.rect = self.image.get_rect(center = coord[0])
-        self.speed = 7
+        self.speed = 15
 
         self.dx = 0
         self.dy = 0
