@@ -6,8 +6,17 @@ from wall import Wall
 from limit import limit_game
 from collision import collide, players_collide
 
+# Players Scores
+score_1 = 0
+score_2 = 0
+
+Mens_pontos1format = None
+Mens_pontos2format = None
 
 def game():
+    global Mens_pontos1format, Mens_pontos2format
+    global score_1, score_2
+
     pygame.init()
 
     game_screen = pygame.display.set_mode(config.SCREEN_SIZE)
@@ -19,26 +28,23 @@ def game():
     wall = Wall()
     clock = pygame.time.Clock()
 
-    # Players Scores
-    score_1 = 0
-    score_2 = 0
     font = pygame.font.Font("font/retro_gaming.ttf", 80)
     Mens_pontos1format = font.render(str(score_1), False, config.GREEN)
     Mens_pontos2format = font.render(str(score_2), False, config.BLUE)
     key_pressed = set()
 
-    def update_score(player, score1, score2):
-        global  Mens_pontos1format
+    def update_score(player):
+        global  Mens_pontos2format, score_2
         if player == 1:
-            score1 += 1
+            score_2 += 1
 
-            Mens_pontos1format = font.render(str(score1), False, config.GREEN)
-
+            Mens_pontos2format = font.render(str(score_2), False, config.BLUE)
+            
         if player == 2:
-            global Mens_pontos2format
-            score2 += 1
+            global Mens_pontos1format, score_1
+            score_1 += 1
 
-            Mens_pontos2format = font.render(str(score2), False, config.BLUE)
+            Mens_pontos1format = font.render(str(score_1), False, config.GREEN)
 
     # Creating the player group
     player_1 = pygame.sprite.GroupSingle(tank_green)
@@ -129,16 +135,21 @@ def game():
                 tank_green.hit = False
             if event.type == pygame.USEREVENT + 4:
                 tank_blue.hit = False
+            
+            # Check if the user wants to exit
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                exit()
 
         if tank_green.hit:
-            update_score(1, score_1, score_2)
+            update_score(1)
+            tank_green.hit = False
 
-            pygame.time.set_timer(pygame.USEREVENT + 3, 1000)
         if tank_blue.hit:
-            update_score(2, score_1, score_2)
+            update_score(2)
+            tank_green.hit = False
 
-            pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
-
+        pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
 
         print(tank_green.hit)
 
