@@ -26,7 +26,7 @@ def game():
 
     tank_green = Tank('player_1')
     tank_blue = Tank('player_2')
-    osbtacle = Obstacle()
+    obstacle = Obstacle()
     clock = pygame.time.Clock()
 
     font = pygame.font.Font("font/retro_gaming.ttf", 80)
@@ -160,7 +160,7 @@ def game():
 
         tank_green.render(game_screen)
         tank_blue.render(game_screen)
-        osbtacle.render(game_screen)
+        obstacle.render(game_screen)
 
         collide(tank_green)
         collide(tank_blue)
