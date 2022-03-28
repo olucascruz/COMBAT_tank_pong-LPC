@@ -2,16 +2,17 @@ import pygame
 import config
 import bullet
 from tank import Tank
-from wall import Wall
+from obstacle import Obstacle
 from limit import limit_game
 from collision import collide, players_collide
 
-# Players Scores
+# Player Score
 score_1 = 0
 score_2 = 0
 
 Mens_pontos1format = None
 Mens_pontos2format = None
+
 
 def game():
     global Mens_pontos1format, Mens_pontos2format
@@ -25,7 +26,7 @@ def game():
 
     tank_green = Tank('player_1')
     tank_blue = Tank('player_2')
-    wall = Wall()
+    osbtacle = Obstacle()
     clock = pygame.time.Clock()
 
     font = pygame.font.Font("font/retro_gaming.ttf", 80)
@@ -146,8 +147,6 @@ def game():
                 i.kill()
                 config.shot_sound.play()
 
-        #pygame.time.set_timer(pygame.USEREVENT + 4, 1000)
-
         move_player()
 
         # Drawing the elements on the screen
@@ -161,7 +160,7 @@ def game():
 
         tank_green.render(game_screen)
         tank_blue.render(game_screen)
-        wall.render(game_screen)
+        osbtacle.render(game_screen)
 
         collide(tank_green)
         collide(tank_blue)

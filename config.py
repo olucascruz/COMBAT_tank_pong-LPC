@@ -1,14 +1,13 @@
 import pygame
 pygame.mixer.init()
 
-pygame.mixer.music.load('sound/fundo.mp3')
+pygame.mixer.music.load('sound/background.mp3')
 pygame.mixer.music.play(-1)
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 700
 SCREEN_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)
 
-PINK = '#d56dc3'
 GREEN = '#8cc55d'
 BLUE = '#3a8ab1'
 YELLOW = '#d4a642'

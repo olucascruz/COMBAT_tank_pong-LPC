@@ -40,6 +40,7 @@ class Tank(pygame.sprite.Sprite):
                 self.position_x += self.speed
             if direction_move == 'backward':
                 self.position_x -= self.speed
+
         if self.direction == 30 or self.direction == -330:
             if direction_move == 'forward':
                 self.position_x += self.speed
