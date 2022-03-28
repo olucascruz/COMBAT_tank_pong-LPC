@@ -1,4 +1,4 @@
-import config 
+import config
 from obstacle import Obstacle
 
 obstacle = Obstacle()
@@ -19,26 +19,32 @@ def collide(player):
         player.position_x = config.SCREEN_WIDTH - 80
     # collision left obstacle
 
-    list_y = [obstacle.left_obstacle_y, obstacle.right_obstacle_y, obstacle.square_obstacle_y, obstacle.l_obstacle_y, obstacle.l_obstacle2_y,
+    list_y = [obstacle.left_obstacle_y, obstacle.right_obstacle_y, obstacle.square_obstacle_y,
+              obstacle.l_obstacle_y, obstacle.l_obstacle2_y,
               obstacle.horizontal_obstacle_y, obstacle.horizontal_obstacle_y, obstacle.horizontal_obstacle_y + 420,
               obstacle.horizontal_obstacle_y + 420, obstacle.square_obstacle_y, obstacle.square_obstacle_y + 260,
               obstacle.square_obstacle_y - 255, obstacle.l_obstacle_y - 250, obstacle.l_obstacle_y - 250]
 
-    list_x = [obstacle.left_obstacle_x, obstacle.right_obstacle_x, obstacle.square_obstacle_x, obstacle.l_obstacle_x, obstacle.l_obstacle2_x,
+    list_x = [obstacle.left_obstacle_x, obstacle.right_obstacle_x, obstacle.square_obstacle_x,
+              obstacle.l_obstacle_x, obstacle.l_obstacle2_x,
               obstacle.horizontal_obstacle_x, obstacle.horizontal_obstacle_x + 770, obstacle.horizontal_obstacle_x,
               obstacle.horizontal_obstacle_x + 770, obstacle.square_obstacle_x + 600, obstacle.square_obstacle_x + 300,
               obstacle.square_obstacle_x + 300, obstacle.l_obstacle_x + 320, obstacle.l_obstacle2_x - 320]
 
     list_rect_h = [obstacle.left_obstacle_rect[3], obstacle.right_obstacle_rect[3],
                    obstacle.square_obstacle_rect[3], obstacle.l_obstacle_rect[3], obstacle.l_obstacle2_rect[3],
-                   obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3],
-                   obstacle.horizontal_obstacle_rect[3], obstacle.square_obstacle_rect[3], obstacle.square_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3], obstacle.square_obstacle_rect[3],
+                   obstacle.square_obstacle_rect[3],
                    obstacle.square_obstacle_rect[3], obstacle.l_obstacle_rect[3], obstacle.l_obstacle_rect[3]]
 
     list_rect_w = [obstacle.left_obstacle_rect[2], obstacle.right_obstacle_rect[2],
                    obstacle.square_obstacle_rect[2], obstacle.l_obstacle_rect[2], obstacle.l_obstacle2_rect[2],
-                   obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2],
-                   obstacle.horizontal_obstacle_rect[2], obstacle.square_obstacle_rect[2], obstacle.square_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2], obstacle.square_obstacle_rect[2],
+                   obstacle.square_obstacle_rect[2],
                    obstacle.square_obstacle_rect[2], obstacle.l_obstacle_rect[2], obstacle.l_obstacle_rect[2]]
 
     for i in range(len(list_y)):
@@ -98,26 +104,32 @@ def collide_bullet(bullet):
         bullet.dx *= -1
     # collision left obstacle
 
-    list_y = [obstacle.left_obstacle_y, obstacle.right_obstacle_y, obstacle.square_obstacle_y, obstacle.l_obstacle_y, obstacle.l_obstacle2_y,
+    list_y = [obstacle.left_obstacle_y, obstacle.right_obstacle_y, obstacle.square_obstacle_y,
+              obstacle.l_obstacle_y, obstacle.l_obstacle2_y,
               obstacle.horizontal_obstacle_y, obstacle.horizontal_obstacle_y, obstacle.horizontal_obstacle_y + 420,
               obstacle.horizontal_obstacle_y + 420, obstacle.square_obstacle_y, obstacle.square_obstacle_y + 260,
               obstacle.square_obstacle_y - 255, obstacle.l_obstacle_y - 250, obstacle.l_obstacle_y - 250]
 
-    list_x = [obstacle.left_obstacle_x, obstacle.right_obstacle_x, obstacle.square_obstacle_x, obstacle.l_obstacle_x, obstacle.l_obstacle2_x,
+    list_x = [obstacle.left_obstacle_x, obstacle.right_obstacle_x, obstacle.square_obstacle_x,
+              obstacle.l_obstacle_x, obstacle.l_obstacle2_x,
               obstacle.horizontal_obstacle_x, obstacle.horizontal_obstacle_x + 770, obstacle.horizontal_obstacle_x,
               obstacle.horizontal_obstacle_x + 770, obstacle.square_obstacle_x + 600, obstacle.square_obstacle_x + 300,
               obstacle.square_obstacle_x + 300, obstacle.l_obstacle_x + 320, obstacle.l_obstacle2_x - 320]
 
     list_rect_h = [obstacle.left_obstacle_rect[3], obstacle.right_obstacle_rect[3],
                    obstacle.square_obstacle_rect[3], obstacle.l_obstacle_rect[3], obstacle.l_obstacle2_rect[3],
-                   obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3],
-                   obstacle.horizontal_obstacle_rect[3], obstacle.square_obstacle_rect[3], obstacle.square_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3], obstacle.horizontal_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3],
+                   obstacle.horizontal_obstacle_rect[3], obstacle.square_obstacle_rect[3],
+                   obstacle.square_obstacle_rect[3],
                    obstacle.square_obstacle_rect[3], obstacle.l_obstacle_rect[3], obstacle.l_obstacle_rect[3]]
 
     list_rect_w = [obstacle.left_obstacle_rect[2], obstacle.right_obstacle_rect[2],
                    obstacle.square_obstacle_rect[2], obstacle.l_obstacle_rect[2], obstacle.l_obstacle2_rect[2],
-                   obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2],
-                   obstacle.horizontal_obstacle_rect[2], obstacle.square_obstacle_rect[2], obstacle.square_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2], obstacle.horizontal_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2],
+                   obstacle.horizontal_obstacle_rect[2], obstacle.square_obstacle_rect[2],
+                   obstacle.square_obstacle_rect[2],
                    obstacle.square_obstacle_rect[2], obstacle.l_obstacle_rect[2], obstacle.l_obstacle_rect[2]]
 
     for i in range(len(list_y)):
