@@ -1,8 +1,6 @@
 import pygame
 pygame.mixer.init()
 
-pygame.mixer.music.load('sound/background.mp3')
-pygame.mixer.music.play(-1)
 
 SCREEN_WIDTH = 1200
 SCREEN_HEIGHT = 700
