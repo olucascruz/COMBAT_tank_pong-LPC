@@ -1,16 +1,14 @@
 import pygame
 import config
-import bullet
-from tank import Tank
+import random
+from tank import Tank 
+from bullet import Bullet
 from obstacle import Obstacle
 from limit import limit_game
 from collision import collide, players_collide
 
-
-# Player Score
-
-
 class Game:
+    '''Classe para desenvolver as principais funções do jogo'''
     def __init__(self):
         self.score_1 = 0
         self.score_2 = 0
@@ -37,12 +35,16 @@ class Game:
         bullets_1 = pygame.sprite.Group()
         bullets_2 = pygame.sprite.Group()
 
+        bullet_green = Bullet(tank_green, player_1.sprite.get_bullet_coordinates(), 1)
+
+        bullet_blue = Bullet(tank_blue, player_2.sprite.get_bullet_coordinates(), 2)
+
         self.pontos1format = font.render(str(self.score_1), False, config.GREEN)
         self.pontos2format = font.render(str(self.score_2), False, config.BLUE)
 
-        def add_bullet(bullets, player, enemy, num):
+        def add_bullet(bullets, bullet_player):
             if len(bullets.sprites()) <= config.max_bullets_per_time:
-                bullets.add(bullet.Bullet(player.sprite.get_bullet_coordinates(), num, enemy))
+                bullets.add(bullet_player)
 
         movements = dict(
             forward=lambda: tank_green.move('forward'),
@@ -79,6 +81,14 @@ class Game:
             game_screen.blit(self.pontos1format, (250, -10))
             game_screen.blit(self.pontos2format, (900, -10))
 
+        def bullet_collide_tank(bullet, enemy):
+            if bullet.rect.colliderect(enemy.the_rect):
+                locals_y = [50, 180, 300, 180, 50, 650, 500, 650]
+                locals_x = [50, 180, 1100, 650, 900, 1000, 380]
+                enemy.position_x = locals_x[random.randint(0, 6)]
+                enemy.position_y = locals_y[random.randint(0, 6)]
+                enemy.hit = True
+
         while True:
             clock.tick(16)
 
@@ -105,10 +115,10 @@ class Game:
 
                     # shot
                     if event.key == pygame.K_f:
-                        add_bullet(bullets_1, player_1, tank_blue, 1)
+                        add_bullet(bullets_1, bullet_green)
                         pygame.time.set_timer(pygame.USEREVENT + 1, 4000)
                     if event.key == pygame.K_RSHIFT:
-                        add_bullet(bullets_2, player_2, tank_green, 2)
+                        add_bullet(bullets_2, bullet_blue)
                         pygame.time.set_timer(pygame.USEREVENT + 2, 4000)
 
                 if event.type == pygame.KEYUP:
@@ -130,7 +140,10 @@ class Game:
                     if len(bullets_1.sprites()) >= config.max_bullets_per_time:
                         for i in bullets_2:
                             i.kill()
-
+            
+            bullet_collide_tank(bullet_green, tank_blue)
+            bullet_collide_tank(bullet_blue, tank_green)
+            
             if tank_green.hit:
                 update_score(1, tank_green)
                 for i in bullets_2:
@@ -142,7 +155,8 @@ class Game:
                 for i in bullets_1:
                     i.kill()
                     config.shot_sound.play()
-
+            
+            
             collide(tank_green)
             collide(tank_blue)
             players_collide(tank_green, tank_blue)

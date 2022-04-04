@@ -4,11 +4,11 @@ from collision import collide_bullet
 
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, coord, player, enemy):
+    def __init__(self, tank, coord, player):
         super().__init__()
         self.image = pygame.Surface((5, 5))
         self.image.fill("red")
-
+        self.coord = coord
         directions = [30, 60, 210, 240, -120, -150, -300, -330]
 
         self.direction = coord[1]
@@ -20,7 +20,7 @@ class Bullet(pygame.sprite.Sprite):
                 coord[0] = (coord[0][0] + 8, coord[0][1] + 8)
                 break
 
-        self.rect = self.image.get_rect(center=coord[0])
+        self.rect = self.image.get_rect(tank.the_rect..)
         self.speed = 15
 
         self.dx = 0
@@ -36,8 +36,6 @@ class Bullet(pygame.sprite.Sprite):
     def movement(self):
         self.rect.x += self.dx
         self.rect.y += self.dy
-        if self.rect.bottom < 0 or self.rect.top > 700 or self.rect.left > 1200 or self.rect.right < 0:
-            self.kill()
 
     def set_direction(self):
         if self.direction == 0 or self.direction == 360 or self.direction == -360:
@@ -88,15 +86,9 @@ class Bullet(pygame.sprite.Sprite):
             self.dx *= -1
             self.dy *= -1
 
-    def collide_with_tank(self):
-        if self.rect.colliderect(self.enemy.the_rect):
-            locals_y = [50, 180, 300, 180, 50, 650, 500, 650]
-            locals_x = [50, 180, 1100, 650, 900, 1000, 380]
-            self.enemy.position_x = locals_x[random.randint(0, 6)]
-            self.enemy.position_y = locals_y[random.randint(0, 6)]
-            self.enemy.hit = True
+    
 
     def update(self):
+        print(self.coord)
         self.movement()
-        self.collide_with_tank()
         collide_bullet(self)
